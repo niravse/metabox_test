@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#1c1230">
+  <title>Pomodoro Timer</title>
+  <!-- Space Grotesk for the numbers and labels (falls back to the system font if offline) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+
+    <!-- Mode tabs. The badge shows how many of that round type you have finished -->
+    <div class="tabs" role="tablist" aria-label="Timer mode">
+      <button class="tab" role="tab" data-mode="focus">
+        <span>Focus</span><span class="badge" id="count-focus">0</span>
+      </button>
+      <button class="tab" role="tab" data-mode="short">
+        <span>Short Break</span><span class="badge" id="count-short">0</span>
+      </button>
+      <button class="tab" role="tab" data-mode="long">
+        <span>Long Break</span><span class="badge" id="count-long">0</span>
+      </button>
+    </div>
+
+    <!-- Progress ring with the time and a status pill in the middle -->
+    <div class="dial" id="dial">
+      <svg viewBox="0 0 200 200" aria-hidden="true">
+        <defs>
+          <linearGradient id="ring-gradient" x1="1" y1="0" x2="0" y2="1">
+            <stop offset="0%" class="stop-a"></stop>
+            <stop offset="100%" class="stop-b"></stop>
+          </linearGradient>
+        </defs>
+        <circle class="track" cx="100" cy="100" r="92"></circle>
+        <circle id="progress" class="progress" cx="100" cy="100" r="92"></circle>
+      </svg>
+      <div class="dial-text">
+        <div id="time" class="time" role="timer" aria-live="off">
+          <span id="mm">25</span><span class="colon" aria-hidden="true"></span><span id="ss">00</span>
+        </div>
+        <p class="status"><span class="status-dot"></span><span id="status-text">Focus session</span></p>
+      </div>
+    </div>
+
+    <!-- Four dots: one fills in for every finished focus round in the set -->
+    <div id="rounds" class="rounds" aria-label="Focus rounds completed in this set">
+      <span></span><span></span><span></span><span></span>
+    </div>
+
+    <div class="controls">
+      <button id="reset" class="icon-btn" aria-label="Reset" title="Reset">
+        <svg viewBox="0 0 24 24"><path d="M12 5V2L7 6l5 4V7a5 5 0 1 1-5 5H5a7 7 0 1 0 7-7z"/></svg>
+      </button>
+
+      <button id="start" class="main-btn">
+        <span id="start-icon" class="btn-icon"></span>
+        <span id="start-label">Start</span>
+      </button>
+
+      <button id="skip" class="icon-btn" aria-label="Skip to next round" title="Skip">
+        <svg viewBox="0 0 24 24"><path d="M6 6l9 6-9 6V6zm11 0h2v12h-2V6z"/></svg>
+      </button>
+    </div>
+
+    <p class="hint">Press Space to start or pause</p>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
